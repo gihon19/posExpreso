@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Factura_Pos" pageWidth="216" pageHeight="720" columnWidth="196" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Factura_Saint_Paul" pageWidth="216" pageHeight="720" columnWidth="196" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2xpbmljYS52X2VuY2FiZXphZG9fZmFjdHVyYSBBUyAsNDU3LDY0LGNmNjcwZWMxLWNlM2MtNGVk&#xA;Yi05ZTVkLWRiZGE0OTAwMTkzMztjbGluaWNhLnZfZGV0YWxsZV9mYWN0dXJhIEFTICwxMzYsMzYs&#xA;NTEyOGQwOTAtNjhhYi00ZjQ5LTg3YTgtNGRjMTZiZDUwNjk5Ow=="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NEW_DATAADAPTER.xml"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -26,124 +26,76 @@
 	</style>
 	<parameter name="numero_factura" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT admin_tools.v_encabezado_factura.numero_factura,
-	admin_tools.v_encabezado_factura.fecha,
-	admin_tools .v_encabezado_factura.codigo_cliente,
-	admin_tools .v_encabezado_factura.nombre_cliente,
-	admin_tools .v_encabezado_factura.direccion,
-	admin_tools .v_encabezado_factura.telefono,
-	admin_tools .v_encabezado_factura.movil,
-	admin_tools .v_encabezado_factura.rtn,
-	admin_tools .v_encabezado_factura.subtotal,
-	admin_tools .v_encabezado_factura.impuesto,
-	admin_tools .v_encabezado_factura.total,
-	admin_tools .v_encabezado_factura.codigo,
-	admin_tools .v_encabezado_factura.isv18,
-	admin_tools .v_encabezado_factura.estado_factura,
-	admin_tools .v_encabezado_factura.usuario,
-	admin_tools .v_encabezado_factura.pago,
-	admin_tools .v_encabezado_factura.tipo_factura,
-	admin_tools .v_encabezado_factura.descuento,
-	admin_tools .v_detalle_factura.total_detalle,
-	admin_tools .v_detalle_factura.subtotal_detalle,
-	admin_tools .v_detalle_factura.descuento_detalle,
-	admin_tools .v_detalle_factura.impuesto_detalle,
-	admin_tools .v_detalle_factura.cantidad_detalle,
-	admin_tools .v_detalle_factura.precio_detalle,
-	admin_tools .v_detalle_factura.articulo,
-	admin_tools .v_detalle_factura.numero_factura_detalle,
-	admin_tools .v_encabezado_factura.cambio,
-	admin_tools .v_encabezado_factura.total_letras
-FROM admin_tools .v_encabezado_factura
-	INNER JOIN admin_tools .v_detalle_factura ON
-	 admin_tools .v_detalle_factura.numero_factura_detalle = admin_tools .v_encabezado_factura.numero_factura
+		<![CDATA[SELECT texaco_pos .v_encabezado_factura.numero_factura,
+	texaco_pos .v_encabezado_factura.fecha,
+	texaco_pos .v_encabezado_factura.codigo_cliente,
+	texaco_pos .v_encabezado_factura.nombre_cliente,
+	texaco_pos .v_encabezado_factura.direccion,
+	texaco_pos .v_encabezado_factura.telefono,
+	texaco_pos .v_encabezado_factura.movil,
+	texaco_pos .v_encabezado_factura.rtn,
+	texaco_pos .v_encabezado_factura.subtotal,
+	texaco_pos .v_encabezado_factura.impuesto,
+	texaco_pos .v_encabezado_factura.total,
+	texaco_pos .v_encabezado_factura.codigo,
+	texaco_pos .v_encabezado_factura.isv18,
+	texaco_pos .v_encabezado_factura.estado_factura,
+	texaco_pos .v_encabezado_factura.usuario,
+	texaco_pos .v_encabezado_factura.pago,
+	texaco_pos .v_encabezado_factura.tipo_factura,
+	texaco_pos .v_encabezado_factura.descuento,
+	texaco_pos .v_detalle_factura.total_detalle,
+	texaco_pos .v_detalle_factura.subtotal_detalle,
+	texaco_pos .v_detalle_factura.descuento_detalle,
+	texaco_pos .v_detalle_factura.impuesto_detalle,
+	texaco_pos .v_detalle_factura.cantidad_detalle,
+	texaco_pos .v_detalle_factura.precio_detalle,
+	texaco_pos .v_detalle_factura.articulo,
+	texaco_pos .v_detalle_factura.numero_factura_detalle,
+	texaco_pos .v_encabezado_factura.cambio,
+	texaco_pos .v_encabezado_factura.total_letras
+FROM texaco_pos .v_encabezado_factura
+	INNER JOIN texaco_pos .v_detalle_factura ON
+	 texaco_pos .v_detalle_factura.numero_factura_detalle = texaco_pos .v_encabezado_factura.numero_factura
 WHERE
-	 admin_tools .v_encabezado_factura.numero_factura = $P{numero_factura}]]>
+	 texaco_pos .v_encabezado_factura.numero_factura = $P{numero_factura}]]>
 	</queryString>
-	<field name="numero_factura" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fecha" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="codigo_cliente" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nombre_cliente" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="direccion" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="movil" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="rtn" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="subtotal" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="impuesto" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="total" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="codigo" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="isv18" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="estado_factura" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="usuario" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="pago" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tipo_factura" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descuento" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="total_detalle" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="subtotal_detalle" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descuento_detalle" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="impuesto_detalle" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="cantidad_detalle" class="java.lang.Float">
+	<field name="articulo" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="precio_detalle" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="articulo" class="java.lang.String">
+	<field name="cantidad_detalle" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="numero_factura_detalle" class="java.lang.Integer">
+	<field name="impuesto_detalle" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="cambio" class="java.lang.Double">
+	<field name="descuento_detalle" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="total_letras" class="java.lang.String">
+	<field name="subtotal_detalle" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="total_detalle" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.lang.Float"/>
+	<field name="impuesto" class="java.lang.Float"/>
+	<field name="total" class="java.lang.Float"/>
+	<field name="descuento" class="java.lang.Float"/>
+	<field name="numero_factura" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="rtn" class="java.lang.String"/>
+	<field name="tipo_factura" class="java.lang.String"/>
+	<field name="isv18" class="java.lang.Float"/>
+	<field name="usuario" class="java.lang.String"/>
+	<field name="pago" class="java.lang.String"/>
+	<field name="cambio" class="java.lang.Float"/>
+	<field name="total_letras" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
