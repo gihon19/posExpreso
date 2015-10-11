@@ -12,8 +12,8 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="147"/>
+	<property name="ireport.x" value="273"/>
+	<property name="ireport.y" value="20"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -98,39 +98,32 @@ WHERE
 	<title>
 		<band height="95" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="186" y="45" width="210" height="22" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
+				<reportElement style="Title" x="177" y="45" width="210" height="22" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16"/>
 				</textElement>
-				<text><![CDATA[Cierre de caja]]></text>
+				<text><![CDATA[Reporte de Ventas D.E.I]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="13" width="570" height="12" uuid="62ab06e3-8503-4626-af69-a4bfa871b17c"/>
+				<reportElement x="0" y="19" width="570" height="12" uuid="62ab06e3-8503-4626-af69-a4bfa871b17c"/>
 				<textElement textAlignment="Center">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Olanchito, Yoro, Carretera Salida a Saba]]></text>
+				<text><![CDATA[La Masica, Atlantida, B° Suyapa, Gasolinera Puma San Juan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="0" width="570" height="23" uuid="3c2bd69a-9200-41f6-af53-6a56715225f5"/>
+				<reportElement x="2" y="3" width="570" height="23" uuid="3c2bd69a-9200-41f6-af53-6a56715225f5"/>
 				<textElement textAlignment="Center">
 					<font size="13"/>
 				</textElement>
-				<text><![CDATA[TIENDA DE CONVENIENCIA TEXACO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="23" width="570" height="12" uuid="9d982688-d65f-4bf8-9278-8e0aa6805123"/>
-				<textElement textAlignment="Center">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Propietario Rafael Armando Paz]]></text>
+				<text><![CDATA[INVERSIONES DEL ATLANTICO S DE R.L.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="32" width="570" height="14" uuid="a1709503-4ace-42cf-9af1-2a4b0fbe7a50"/>
 				<textElement textAlignment="Center">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Telefono: 2446-2620  RTN:18071940003468]]></text>
+				<text><![CDATA[Telefono (504) 2436-3144   RTN:18071940003468]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="226" y="67" width="59" height="13" uuid="9728e7a6-4f41-4354-a5e8-0e638e21fa3d"/>
