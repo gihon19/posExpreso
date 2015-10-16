@@ -15,23 +15,22 @@ import view.ViewFacturar;
 import view.ViewLogin;
 import view.ViewMenuPrincipal;
 
-public class principal {
+public class PrincipalExpreso {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		Conexion conexion= new Conexion();
+												
 		
 		AbstractJasperReports.loadFileReport();
-		
-		
 		try {
 			AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, 1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
-		
 		
 		ViewLogin viewLogin =new ViewLogin(); 
 		CtlLogin ctlLogin=new CtlLogin(viewLogin,conexion);

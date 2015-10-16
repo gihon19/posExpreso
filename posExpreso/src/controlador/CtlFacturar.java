@@ -652,13 +652,20 @@ public void calcularTotal(DetalleFactura detalle){
 											}else
 												if(e.getKeyCode()==KeyEvent.VK_LEFT){
 													if(filaPulsada>=0){
-														 this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().netPrecio();
-														 this.calcularTotales();
+														int resul=JOptionPane.showConfirmDialog(view, "¿Desea aplicar el descuenta de la tercera edad?");
+														//sin confirmo la anulacion
+														if(resul==0){
+															this.view.getModeloTabla().getDetalle(filaPulsada).setDescuento(5);
+															//this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().netPrecio();
+															this.calcularTotales();
+														}
 													 }
 												}else
 													if(e.getKeyCode()==KeyEvent.VK_RIGHT){
 														if(filaPulsada>=0){
-															 this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().lastPrecio();
+															this.view.getModeloTabla().getDetalle(filaPulsada).setDescuento(-1);
+															this.view.getModeloTabla().getDetalle(filaPulsada).setDescuentoItem(new BigDecimal(0));
+															//this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().lastPrecio();
 															 this.calcularTotales();
 														 }
 													}
@@ -683,8 +690,8 @@ public void calcularTotal(DetalleFactura detalle){
 				//AbstractJasperReports.createReportFactura( conexion.getPoolConexion().getConnection(), "Cierre_Caja_Saint_Paul.jasper",1 );
 				AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 4, cierre.idUltimoRequistro);
 				
-				AbstractJasperReports.Imprimir2();
-				JOptionPane.showMessageDialog(view, "Se realizo el corte correctamente.");
+				AbstractJasperReports.showViewer(view);
+				//JOptionPane.showMessageDialog(view, "Se realizo el corte correctamente.");
 				//AbstractJasperReports.showViewer(view);
 				
 				//this.view.setModal(false);
@@ -716,7 +723,10 @@ public void calcularTotal(DetalleFactura detalle){
 		filaPulsada = this.view.getTableDetalle().getSelectedRow();
 		char caracter = e.getKeyChar();
 		
-		
+		if(e.getComponent()==this.view.getTxtNombrecliente()){
+			view.getTxtIdcliente().setText("-1");
+			
+		}
 		//para quitar los simnos mas o numero que ingrese en la busqueda
 		if(e.getComponent()==this.view.getTxtBuscar()){
 			Character caracter1 = new Character(e.getKeyChar());
@@ -877,7 +887,7 @@ public void calcularTotal(DetalleFactura detalle){
 								AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, myFactura.getIdFactura());
 								//AbstractJasperReports.showViewer(view);
 								AbstractJasperReports.imprimierFactura();
-								AbstractJasperReports.imprimierFactura();
+								//AbstractJasperReports.imprimierFactura();
 								//myFactura=null;
 								setEmptyView();
 								

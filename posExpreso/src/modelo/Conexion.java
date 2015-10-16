@@ -25,10 +25,10 @@ public class Conexion {
 	//10.10.10.8:3306
 		private  BasicDataSource basicDataSource;
 	   private DataSource dataSource;
-	   static String bd = "admin_tools";
+	   static String bd = "admin_tools_exp";
 	   static String login = "root";
 	   static String password = "jdmm123";
-	   static String url = "jdbc:mysql://127.0.01:3306/"+bd;
+	   static String url = "jdbc:mysql://localhost:3306/"+bd;
 	   static String driver="com.mysql.jdbc.Driver";
    private Usuario usuarioLogin=null;
 

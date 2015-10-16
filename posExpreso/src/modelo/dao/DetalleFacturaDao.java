@@ -175,7 +175,7 @@ public class DetalleFacturaDao {
 			agregarDetalle.executeUpdate();
 			
 			
-			if(detalle.getArticulo().getTipoArticulo()!=2){
+			/*if(detalle.getArticulo().getTipoArticulo()!=2){
 				Inventario inventario=new Inventario();
 				
 				//se consigue el inventario del articulo
@@ -210,7 +210,7 @@ public class DetalleFacturaDao {
 				
 				kardexDao.agregarEntrada(myKardex);
 			
-			}
+			}*/
 			resultado=true;
 		}catch (SQLException e) {
 			e.printStackTrace();

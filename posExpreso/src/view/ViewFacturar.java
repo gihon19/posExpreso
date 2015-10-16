@@ -250,7 +250,7 @@ public class ViewFacturar extends JDialog {
 		
 		grupoOpciones = new ButtonGroup();
 		rdbtnCredito = new JRadioButton("");
-		//rdbtnCredito.setEnabled(false);// para descativar los creditos
+		rdbtnCredito.setEnabled(false);// para descativar los creditos
 		rdbtnCredito.setBounds(526, 47, 21, 23);
 		grupoOpciones.add(rdbtnCredito);
 		panelDatosFactura.add(rdbtnCredito);
@@ -276,12 +276,14 @@ public class ViewFacturar extends JDialog {
 		
 		JLabel lblVendedor = new JLabel("Vendedor");
 		lblVendedor.setBounds(581, 23, 61, 14);
+		lblVendedor.setVisible(false);
 		panelDatosFactura.add(lblVendedor);
 		
 		cbxEmpleados = new JComboBox();
 		this.modeloEmpleado=new CbxTmEmpleado();
 		cbxEmpleados.setModel(modeloEmpleado);//comentar para moder ver la vista de diseño
 		cbxEmpleados.setBounds(581, 48, 199, 20);
+		cbxEmpleados.setVisible(false);
 		panelDatosFactura.add(cbxEmpleados);
 		
 		
