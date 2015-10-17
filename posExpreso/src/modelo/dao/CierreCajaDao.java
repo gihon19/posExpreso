@@ -40,57 +40,60 @@ public class CierreCajaDao {
 					+ "isv15,"
 					+ "isv18)"
 					+ " VALUES (now(),?,?,?,?,?,?,?,?,?)";
-		 if(unCierre!=null)
-		 try {
-				con = Conexion.getPoolConexion().getConnection();
-				registrarCierre=
-						con.prepareStatement(sql);
-				
-				registrarCierre.setInt(1,unCierre.getNoFacturaInicio() );
-				registrarCierre.setInt(2,unCierre.getNoFacturaFinal() );
-				registrarCierre.setBigDecimal(3, unCierre.getEfectivo());
-				registrarCierre.setBigDecimal(4, unCierre.getCredito());
-				registrarCierre.setBigDecimal(5, unCierre.getTotal());
-				registrarCierre.setBigDecimal(6, unCierre.getTarjeta());
-				registrarCierre.setString(7, unCierre.getUsuario());
-				registrarCierre.setBigDecimal(8, unCierre.getIsv15());
-				registrarCierre.setBigDecimal(9, unCierre.getIsv18());
-				
-				
-				
-				
-				registrarCierre.executeUpdate();//se guarda el encabezado de la factura
-				
-				
-				rs=registrarCierre.getGeneratedKeys(); //obtengo las ultimas llaves generadas
-				while(rs.next()){
-					this.idUltimoRequistro=rs.getInt(1);
-					//this.setIdArticuloRegistrado(rs.getInt(1));
-				}
-				resultado=true;
-				
-		 }catch (SQLException e) {
-				e.printStackTrace();
-				resultado=false;
-			}
-		finally
-		{
-			try{
-				
-				if(rs != null) rs.close();
-				if(registrarCierre != null)registrarCierre.close();
-				if(con != null) con.close();
-             
-				
-				} // fin de try
-				catch ( SQLException excepcionSql )
+		 if(unCierre!=null&&unCierre.getNoFacturaFinal()!=0){
+				 try {
+						con = Conexion.getPoolConexion().getConnection();
+						registrarCierre=
+								con.prepareStatement(sql);
+						
+						registrarCierre.setInt(1,unCierre.getNoFacturaInicio() );
+						registrarCierre.setInt(2,unCierre.getNoFacturaFinal() );
+						registrarCierre.setBigDecimal(3, unCierre.getEfectivo());
+						registrarCierre.setBigDecimal(4, unCierre.getCredito());
+						registrarCierre.setBigDecimal(5, unCierre.getTotal());
+						registrarCierre.setBigDecimal(6, unCierre.getTarjeta());
+						registrarCierre.setString(7, unCierre.getUsuario());
+						registrarCierre.setBigDecimal(8, unCierre.getIsv15());
+						registrarCierre.setBigDecimal(9, unCierre.getIsv18());
+						
+						
+						
+						
+						registrarCierre.executeUpdate();//se guarda el encabezado de la factura
+						
+						
+						rs=registrarCierre.getGeneratedKeys(); //obtengo las ultimas llaves generadas
+						while(rs.next()){
+							this.idUltimoRequistro=rs.getInt(1);
+							//this.setIdArticuloRegistrado(rs.getInt(1));
+						}
+						resultado=true;
+						
+				 }catch (SQLException e) {
+						e.printStackTrace();
+						resultado=false;
+					}
+				finally
 				{
-					excepcionSql.printStackTrace();
-					//conexion.desconectar();
-				} // fin de catch
-		} // fin de finally
+					try{
+						
+						if(rs != null) rs.close();
+						if(registrarCierre != null)registrarCierre.close();
+						if(con != null) con.close();
+		             
+						
+						} // fin de try
+						catch ( SQLException excepcionSql )
+						{
+							excepcionSql.printStackTrace();
+							//conexion.desconectar();
+						} // fin de catch
+				} // fin de finally
 		
-		
+		 }else{
+			 resultado=false;
+		 }
+		 
 		return resultado;
 	}
 	

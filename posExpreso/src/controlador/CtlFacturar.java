@@ -691,21 +691,6 @@ public void calcularTotal(DetalleFactura detalle){
 				AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 4, cierre.idUltimoRequistro);
 				
 				AbstractJasperReports.showViewer(view);
-				//JOptionPane.showMessageDialog(view, "Se realizo el corte correctamente.");
-				//AbstractJasperReports.showViewer(view);
-				
-				//this.view.setModal(false);
-				//AbstractJasperReports.imprimierFactura();
-				
-				
-				
-				
-				/*if(!cierre.registrarCierre()){
-					JOptionPane.showMessageDialog(view, "No se guardo el cierre de corte. Vuelva a hacer el corte.");
-				}else{
-					AbstractJasperReports.Imprimir2();
-					JOptionPane.showMessageDialog(view, "Se realizo el corte correctamente.");
-				}*/
 				
 			} catch (SQLException ee) {
 				// TODO Auto-generated catch block

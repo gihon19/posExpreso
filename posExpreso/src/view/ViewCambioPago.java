@@ -207,6 +207,8 @@ public class ViewCambioPago extends JDialog {
 		txtCambio.addActionListener(c);
 		txtCambio.setActionCommand("IMPRIMIR");
 		
+		txtCambio.addKeyListener(c);
+		
 	}
 	/*public static void main(String arg[]){
 		ViewCambioPago viewPago=new ViewCambioPago(null);
