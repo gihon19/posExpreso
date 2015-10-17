@@ -215,6 +215,7 @@ public class CtlFacturar  implements ActionListener, MouseListener, TableModelLi
 			myCliente=new Cliente();
 			myCliente.setId(Integer.parseInt(this.view.getTxtIdcliente().getText()));
 			myCliente.setNombre(this.view.getTxtNombrecliente().getText());
+			myCliente.setRtn(view.getTxtRtn().getText());
 			
 		}
 		
@@ -992,7 +993,7 @@ public void calcularTotal(DetalleFactura detalle){
 		//se estable un cliente generico para la factura
 		this.view.getTxtIdcliente().setText("1");;
 		this.view.getTxtNombrecliente().setText("Consumidor final");
-		
+		this.view.getTxtRtn().setText("");
 		
 		this.myCliente=null;
 		

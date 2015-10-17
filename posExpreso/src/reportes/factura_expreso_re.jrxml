@@ -238,11 +238,11 @@ WHERE
 				<text><![CDATA[Facha:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="27" width="185" height="14" uuid="e67c76ca-6629-47af-a040-917307955170"/>
+				<reportElement x="1" y="27" width="182" height="14" uuid="e67c76ca-6629-47af-a040-917307955170"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="9"/>
 				</textElement>
-				<text><![CDATA[RTN 18071940003468]]></text>
+				<text><![CDATA[RTN 01059014682319]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="3" y="92" width="183" height="14" uuid="0de9c8fc-4af1-4677-97ca-e1f082a6a3f4"/>
