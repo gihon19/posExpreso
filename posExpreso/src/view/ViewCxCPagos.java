@@ -85,20 +85,20 @@ public class ViewCxCPagos extends JDialog {
 		btnCliente = new BotonBuscarClientes();
 		btnCliente.setText("F3 Clientes");
 		btnCliente.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCliente.setBounds(10, 19, 158, 38);
+		btnCliente.setBounds(10, 25, 158, 80);
 		panelAcciones.add(btnCliente);
 		
 		btnCobrar = new BotonCobrar();
 		btnCobrar.setText("F2 Cobrar");
 		btnCobrar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCobrar.setBounds(10, 76, 158, 38);
+		btnCobrar.setBounds(10, 130, 158, 80);
 		
 		panelAcciones.add(btnCobrar);
 		
 		btnCerrar = new BotonCancelar();
 		btnCerrar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCerrar.setText("Esc Cerrar");
-		btnCerrar.setBounds(10, 133, 158, 38);
+		btnCerrar.setBounds(10, 235, 158, 80);
 		panelAcciones.add(btnCerrar);
 		
 		
@@ -146,7 +146,7 @@ public class ViewCxCPagos extends JDialog {
 		panelDatosFactura.add(lblNombreCliente);
 		
 		JLabel lblSaldoCliente = new JLabel("Saldo Cliente");
-		lblSaldoCliente.setBounds(574, 23, 86, 14);
+		lblSaldoCliente.setBounds(631, 23, 86, 14);
 		panelDatosFactura.add(lblSaldoCliente);
 		
 		JLabel lblLimiteDeCredito = new JLabel("Limite de credito");
@@ -154,12 +154,12 @@ public class ViewCxCPagos extends JDialog {
 		panelDatosFactura.add(lblLimiteDeCredito);
 		
 		txtLimitecredito = new JTextField();
-		txtLimitecredito.setBounds(461, 44, 103, 29);
+		txtLimitecredito.setBounds(461, 44, 145, 29);
 		panelDatosFactura.add(txtLimitecredito);
 		txtLimitecredito.setColumns(10);
 		
 		txtSaldocliente = new JTextField();
-		txtSaldocliente.setBounds(574, 44, 86, 29);
+		txtSaldocliente.setBounds(631, 44, 125, 29);
 		panelDatosFactura.add(txtSaldocliente);
 		txtSaldocliente.setColumns(10);
 		
@@ -183,7 +183,7 @@ public class ViewCxCPagos extends JDialog {
 		//registerEnterKey( );
 		
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		scrollPane.setBounds(208, 145, 790, 325);
+		scrollPane.setBounds(208, 106, 790, 364);
 		getContentPane().add(scrollPane);
 		
 		

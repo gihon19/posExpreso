@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import controlador.CtlAgregarCompras;
 import controlador.CtlFacturar;
@@ -21,6 +23,17 @@ public class PrincipalExpreso {
 		// TODO Auto-generated method stub
 		
 		Conexion conexion= new Conexion();
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
 												
 		
 		AbstractJasperReports.loadFileReport();
@@ -36,8 +49,7 @@ public class PrincipalExpreso {
 		CtlLogin ctlLogin=new CtlLogin(viewLogin,conexion);
 		
 		boolean login=ctlLogin.login();
-		JDialog.setDefaultLookAndFeelDecorated(true);
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		
 		if(login){
 			
 			if(conexion.getUsuarioLogin().getTipoPermiso()==1){
@@ -48,7 +60,7 @@ public class PrincipalExpreso {
 			if(conexion.getUsuarioLogin().getTipoPermiso()==2){
 				//JOptionPane.showMessageDialog(viewLogin, "jola");
 				ViewFacturar vistaFacturar=new ViewFacturar(null);
-				vistaFacturar.pack();
+				//vistaFacturar.pack();
 				CtlFacturar ctlFacturar=new CtlFacturar(vistaFacturar,conexion );
 				vistaFacturar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); //.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 				vistaFacturar.setVisible(true);

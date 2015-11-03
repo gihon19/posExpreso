@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
@@ -56,12 +57,14 @@ public abstract class AbstractJasperReports
 	private static InputStream facturaReimpresion=null;
 	private static InputStream cierreCaja=null;
 	private static InputStream reciboPago=null;
+	private static InputStream Dei=null;
 	
 	private static JasperReport	reportFactura;
 	private static JasperReport	reportFacturaCompra;
 	private static JasperReport	reportFacturaReimpresion;
 	private static JasperReport	reportFacturaCierreCaja;
 	private static JasperReport	reportReciboPago;
+	private static JasperReport	reportDei;
 	
 	
 	public static void loadFileReport(){
@@ -71,6 +74,7 @@ public abstract class AbstractJasperReports
 		facturaReimpresion=AbstractJasperReports.class.getResourceAsStream("/reportes/factura_expreso_re.jasper");
 		cierreCaja=AbstractJasperReports.class.getResourceAsStream("/reportes/Cierre_Caja_Expreso.jasper");
 		reciboPago=AbstractJasperReports.class.getResourceAsStream("/reportes/recibo_pago.jasper");
+		Dei=AbstractJasperReports.class.getResourceAsStream("/reportes/ReporteDEI.jasper");
 		
 		
 		try {
@@ -79,10 +83,32 @@ public abstract class AbstractJasperReports
 			reportFacturaReimpresion= (JasperReport) JRLoader.loadObject( facturaReimpresion );
 			reportFacturaCierreCaja= (JasperReport) JRLoader.loadObject( cierreCaja );
 			reportReciboPago= (JasperReport) JRLoader.loadObject( reciboPago );
+			reportDei= (JasperReport) JRLoader.loadObject( Dei );
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void createReportDei(Connection conn,int mes,int anio,String usuario){
+		 Map parametros = new HashMap();
+		 parametros.put("Mes",mes);
+		 parametros.put("Anio",anio);
+		 parametros.put("usuario",usuario);
+		 
+		 
+		 try {
+			reportFilled = JasperFillManager.fillReport( reportDei, parametros, conn );
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 try {
+				conn.close();
+			} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+			}
 	}
 	
 	
@@ -124,6 +150,11 @@ public abstract class AbstractJasperReports
 							e1.printStackTrace();
 				}
 		
+	}
+	
+	public static Container getPanelReport(){
+		JasperViewer viewer3 = new JasperViewer( reportFilled );
+		return viewer3.getContentPane();
 	}
 	
 

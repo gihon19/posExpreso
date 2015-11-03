@@ -28,6 +28,8 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 
 import view.botones.BotonCancelar;
+import view.botones.BotonesApp;
+import view.rendes.PanelPadre;
 
 public class ViewLogin extends JDialog{
 	private JTextField txtUser, txtPass;
@@ -44,6 +46,7 @@ public class ViewLogin extends JDialog{
 		
 		Container contenedor = getContentPane();
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(PanelPadre.color1);
 		
 		setUndecorated(true);
 		JPanel panel = new JPanel();
@@ -65,41 +68,41 @@ public class ViewLogin extends JDialog{
 		image = image.getScaledInstance(image.getWidth(null)/22, image.getHeight(null)/22, Image.SCALE_SMOOTH);
 		imgLogo.setImage(image);
 		
-		panel_1 = new JPanel();
+		panel_1 = new PanelPadre();
 		panel_1.setBounds(0, 0, 400, 250);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		lblUser = new JLabel("Usuario: ");
 		lblUser.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblUser.setForeground(Color.BLACK);
-		lblUser.setBounds(10, 75, 64, 14);
+		lblUser.setBounds(20, 84, 64, 14);
 		panel_1.add(lblUser);
 		
 		// crear etiqueta y cuadro de texxto del usuario
 		txtUser = new JTextField(10);
-		txtUser.setBounds(106, 73, 172, 20);
+		txtUser.setBounds(106, 73, 172, 37);
 		panel_1.add(txtUser);
 		txtUser.setToolTipText("Escriba su nombre de usuario");        
 		lblPass = new JLabel("Contraseña: ");
 		lblPass.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblPass.setForeground(Color.BLACK);
-		lblPass.setBounds(10, 121, 100, 14);
+		lblPass.setBounds(10, 130, 100, 14);
 		panel_1.add(lblPass);
 		//crear etiqueta y cuadro de texxto del pw
 		txtPass = new JPasswordField(10);
-		txtPass.setBounds(106, 119, 172, 20);
+		txtPass.setBounds(106, 119, 172, 37);
 		panel_1.add(txtPass);
 		txtPass.setToolTipText("Escriba su contraseña");
 		
 		//Crear y agregar los botones 
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(42, 186, 102, 37);
+		btnAceptar = new BotonesApp("Aceptar");
+		btnAceptar.setLocation(48, 186);
 		panel_1.add(btnAceptar);
 		//establecer Boton aceptar por defecto
 		getRootPane().setDefaultButton(btnAceptar);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(263, 186, 102, 37);
+		btnCancelar = new BotonesApp("Cancelar");
+		btnCancelar.setLocation(224, 186);
 		panel_1.add(btnCancelar);
 		
 		lblNewLabel = new JLabel("");
@@ -107,15 +110,12 @@ public class ViewLogin extends JDialog{
 		lblNewLabel.setBounds(288, 57, 102, 92);
 		panel_1.add(lblNewLabel);
 		
-		this.setResizable(false);
+			
 		
 		
 		
 		
-		
-		
-		
-		setTitle("Autentificacion de usuarios");
+		setTitle("Autentificacion");
 		setSize(400,250);           // Tamanio del Frame 
 		setResizable(false);       // que no se le pueda cambiar el tamanio 
 		//Centrar la ventana de autentificacion en la pantalla
@@ -156,5 +156,4 @@ public class ViewLogin extends JDialog{
 		      super.paintComponent(g);
 		   }
 	}
-
 }

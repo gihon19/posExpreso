@@ -18,13 +18,16 @@ public class RenderizadorTablaFactura implements TableCellRenderer{
 		
 		Font myFont=new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 		 JTextField editor = new JTextField();
+		 Color color3 =Color.decode("#d4f4ff");
+		 //Color color1 =Color.decode("#0009999");
+		 Color color1 =new Color(60, 179, 113);
 		 editor.setFont(myFont);
 		 editor.setText("");
 		    if (value != null)
 		      editor.setText(value.toString());
 		    
 		    if (row % 2 == 0) {
-		    	editor.setBackground(new Color(176, 224, 230));
+		    	editor.setBackground(color3);
 	        } else {
 	        	editor.setBackground(Color.white);
 	        }
@@ -53,7 +56,7 @@ public class RenderizadorTablaFactura implements TableCellRenderer{
 			   editor.setHorizontalAlignment(SwingConstants.RIGHT);
 		 
 		    if (isSelected) {
-		    	editor.setBackground(new Color(254, 172, 172));
+		    	editor.setBackground(color1);
 	        }
 		 return editor;
 	}

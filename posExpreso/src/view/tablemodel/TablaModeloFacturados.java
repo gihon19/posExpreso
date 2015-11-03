@@ -13,6 +13,31 @@ public class TablaModeloFacturados  extends AbstractTableModel {
 		};
 	private List<Factura> facturas=new ArrayList<Factura>();
 	
+	private int limiteInferior=0;
+	private int limiteSuperior=30;
+	private int noPagina=1;
+	
+	public int getLimiteInferior(){
+		return limiteInferior;
+	}
+	public int getLimiteSuperior(){
+		return limiteSuperior;
+	}
+	public int getNoPagina(){
+		return noPagina;
+	}
+	
+	public void netPag(){
+		limiteInferior+=30;
+		//limiteSuperior+=30;
+		noPagina++;
+	}
+	public void lastPag(){
+		//limiteSuperior-=30;
+		limiteInferior-=30;
+		noPagina--;
+	}
+	
 	public Factura getFactura(int row){
 		return facturas.get(row);
 	}

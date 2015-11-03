@@ -39,6 +39,8 @@ import view.botones.BotonEliminar;
 import view.botones.BotonImprimirSmall;
 import view.rendes.RenderizadorTablaFacturas;
 import view.tablemodel.TablaModeloFacturados;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 
 public class ViewFacturas extends JDialog {
 	
@@ -48,6 +50,7 @@ public class ViewFacturas extends JDialog {
 	protected JPanel panelAccion;
 	protected JPanel panelSuperior;
 	protected JPanel panelBusqueda;
+	protected JPanel panelPaginacion;
 	
 	
 	protected BotonAgregar btnAgregar;
@@ -68,6 +71,9 @@ public class ViewFacturas extends JDialog {
 	private JTable tablaFacturas;
 	private TablaModeloFacturados modelo;
 	private JTextField txtBuscar2;
+	private JButton btnSiguiente;
+	private JButton btnAnterior;
+	private JTextField txtPagina;
 
 	public ViewFacturas(JFrame view) {
 		
@@ -84,6 +90,7 @@ public class ViewFacturas extends JDialog {
 		panelAccion=new JPanel();
 		panelBusqueda=new JPanel();
 		panelSuperior=new JPanel();
+		panelPaginacion=new JPanel();
 		
 		panelAccion.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Acciones de registro", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelBusqueda.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Busqueda de registros", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -155,7 +162,22 @@ public class ViewFacturas extends JDialog {
 		panelSuperior.add(panelBusqueda);
 		getContentPane().add(panelSuperior, BorderLayout.NORTH);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		setSize(744,600);
+		getContentPane().add(panelPaginacion, BorderLayout.SOUTH);
+		panelPaginacion.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnAnterior = new JButton("Anterior");
+		panelPaginacion.add(btnAnterior);
+		
+		txtPagina = new JTextField();
+		txtPagina.setEditable(false);
+		txtPagina.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPagina.setText("1");
+		panelPaginacion.add(txtPagina);
+		txtPagina.setColumns(4);
+		
+		btnSiguiente = new JButton("Siguiente");
+		panelPaginacion.add(btnSiguiente);
+		setSize(744,665);
 	
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -193,8 +215,16 @@ public void conectarControlador(CtlFacturas c){
 		 
 		 tablaFacturas.addMouseListener(c);
 		 tablaFacturas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		 
+		 btnSiguiente.addActionListener(c);
+		 btnSiguiente.setActionCommand("NEXT");
+		 
+		 btnAnterior.addActionListener(c);
+		 btnAnterior.setActionCommand("LAST");
 	}
-	
+	public JTextField getTxtPagina(){
+		return txtPagina;
+	}
 	public JTable getTablaFacturas(){
 		return tablaFacturas;
 	}

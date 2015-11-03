@@ -29,9 +29,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JPopupMenu;
 
 import view.botones.BotonAgregar;
+import view.botones.BotonBarcode;
 import view.botones.BotonBuscar;
 import view.botones.BotonEliminar;
+import view.botones.BotonKardex;
 import view.botones.BotonLimpiar;
+import view.rendes.PanelPadre;
 import view.rendes.TablaRenderizadorProveedor;
 import view.tablemodel.TableModeloArticulo;
 import controlador.CtlArticuloBuscar;
@@ -50,7 +53,8 @@ public class ViewListaArticulo extends JDialog {
 	
 	protected BotonAgregar btnAgregar;
 	protected BotonEliminar btnEliminar;
-	protected JButton btnLimpiar;
+	protected BotonBarcode btnLimpiar;
+	protected JButton btnKardex;
 	
 	
 	private JRadioButton rdbtnId;
@@ -71,75 +75,40 @@ public class ViewListaArticulo extends JDialog {
 	public ViewListaArticulo(Window view){
 		super(view,"Articulos",Dialog.ModalityType.DOCUMENT_MODAL);
 		
-		/*addWindowListener(new WindowListener() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				JOptionPane.showMessageDialog(null, "Se esta cerrando");
-			}
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});*/
+		
 		miEsquema=new BorderLayout();
 		//this.setTitle("Articulos");
 		getContentPane().setLayout(miEsquema);
-		
+		//Color color1 =new Color(60, 179, 113);
+		//Color color1 =Color.decode("#d4f4ff");
 		
 		
 		//creacion de los paneles
-		panelAccion=new JPanel();
-		panelBusqueda=new JPanel();
-		panelSuperior=new JPanel();
+		panelAccion=new PanelPadre();
+		panelBusqueda=new PanelPadre();
+		panelSuperior=new PanelPadre();
+		//panelSuperior.setBackground(color1);
 		
 		panelAccion.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Acciones de registro", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelBusqueda.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Busqueda de registros", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		
+		//panelAccion.setBackground(color1);
+		//panelBusqueda.setBackground(color1);
 		//agregar componentes al panel acciones
 		btnAgregar = new BotonAgregar();
 		btnAgregar.setMnemonic('r');
 		panelAccion.add(btnAgregar);
        
 		btnEliminar = new BotonEliminar();
-        btnEliminar.setEnabled(false);
+        //btnEliminar.setEnabled(false);
         panelAccion.add(btnEliminar);
         
-        btnLimpiar = new BotonLimpiar();
-       // btnLimpiar.setIcon(new ImageIcon(ViewListaArticulo.class.getResource("/View/imagen/clear.png"))); // NOI18N
+        btnLimpiar = new BotonBarcode();
+         // btnLimpiar.setIcon(new ImageIcon(ViewListaArticulo.class.getResource("/View/imagen/clear.png"))); // NOI18N
         panelAccion.add(btnLimpiar);
-        btnLimpiar.setEnabled(false);
+        //btnLimpiar.setEnabled(false);
+        
+        btnKardex=new BotonKardex();
+        panelAccion.add(btnKardex);
         
         //configuracion del panel busqueda
         grupoOpciones = new ButtonGroup(); // crea ButtonGroup
@@ -189,7 +158,7 @@ public class ViewListaArticulo extends JDialog {
 		panelSuperior.add(panelBusqueda);
 		getContentPane().add(panelSuperior, BorderLayout.NORTH);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		setSize(710,600);
+		setSize(741,600);
 		
 		//se hace visible
 		//setVisible(true);
@@ -230,10 +199,13 @@ public class ViewListaArticulo extends JDialog {
 		 btnEliminar.setActionCommand("ELIMINAR");
 		 
 		 btnLimpiar.addActionListener(c);
-		 btnLimpiar.setActionCommand("LIMPIAR");
+		 btnLimpiar.setActionCommand("BARCODE");
 		 
 		 txtBuscar.addActionListener(c);
 		 txtBuscar.setActionCommand("BUSCAR");
+		 
+		 btnKardex.addActionListener(c);
+		 btnKardex.setActionCommand("KARDEX");
 		 
 		 tablaArticulos.addMouseListener(c);
 		 tablaArticulos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -267,6 +239,9 @@ public class ViewListaArticulo extends JDialog {
 	}
 	public BotonAgregar getBtnAgregar(){
 		return btnAgregar;
+	}
+	public JButton getBtnBarCode(){
+		return this.btnLimpiar;
 	}
 	
 public void conectarControladorBuscar(CtlArticuloBuscar c){

@@ -74,7 +74,7 @@ public class TmPrecios extends AbstractTableModel {
             case 0:
             	precio.setDecripcion((String) v);// .setId((Integer) value);
             case 1:
-            	precio.setPrecio(new BigDecimal(v)); //.get(rowIndex).setCantidad(new BigDecimal(v));// Double.parseDouble(v));
+            	precio.setPrecio(new BigDecimal(v).setScale(2, BigDecimal.ROUND_HALF_EVEN)); //.get(rowIndex).setCantidad(new BigDecimal(v));// Double.parseDouble(v));
     			fireTableCellUpdated(rowIndex, columnIndex);
            
     

@@ -47,6 +47,8 @@ public class ViewMenuPrincipal extends JFrame {
 	private JMenuItem mntmPagosClientes;
 	private JMenuItem mntmListaPagos;
 	private JMenuItem mntmProgramarPrecios;
+	private JMenu mnReportes;
+	private JMenuItem mntmDeclaracionDei;
 	
 	public ViewMenuPrincipal() {
 		setTitle("AdminTools");
@@ -121,6 +123,12 @@ public class ViewMenuPrincipal extends JFrame {
 		
 		mntmPagosClientes = new JMenuItem("Pagos Clientes");
 		mnCuentasPorCobrar.add(mntmPagosClientes);
+		
+		mnReportes = new JMenu("Reportes");
+		menuBar.add(mnReportes);
+		
+		mntmDeclaracionDei = new JMenuItem("Declaracion DEI");
+		mnReportes.add(mntmDeclaracionDei);
 		
 		JMenu mnCuentasPorPagar = new JMenu("Cuentas Por Pagar");
 		menuBar.add(mnCuentasPorPagar);
@@ -206,6 +214,10 @@ public class ViewMenuPrincipal extends JFrame {
 		
 		mntmProgramarPrecios.addActionListener(c);
 		mntmProgramarPrecios.setActionCommand("PROGRAMARPRECIOS");
+		
+		
+		mntmDeclaracionDei.addActionListener(c);
+		mntmDeclaracionDei.setActionCommand("R_DEI");
 		
 	}
 	public JLabel getLblUserName(){

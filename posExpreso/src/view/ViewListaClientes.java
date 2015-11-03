@@ -24,6 +24,7 @@ import view.botones.BotonAgregar;
 import view.botones.BotonBuscar;
 import view.botones.BotonEliminar;
 import view.botones.BotonLimpiar;
+import view.rendes.PanelPadre;
 import view.tablemodel.TablaModeloCliente;
 import controlador.CtlClienteBuscar;
 import controlador.CtlClienteLista;
@@ -64,11 +65,12 @@ public class ViewListaClientes extends JDialog {
 		miEsquema=new BorderLayout();
 		this.setTitle("Articulos");
 		getContentPane().setLayout(miEsquema);
+		getContentPane().setBackground(PanelPadre.color1);
 		
 		//creacion de los paneles
-		panelAccion=new JPanel();
-		panelBusqueda=new JPanel();
-		panelSuperior=new JPanel();
+		panelAccion=new PanelPadre();
+		panelBusqueda=new PanelPadre();
+		panelSuperior=new PanelPadre();
 		
 		panelAccion.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Acciones de registro", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelBusqueda.setBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Busqueda de registros", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -116,6 +118,7 @@ public class ViewListaClientes extends JDialog {
 		 //tabla y sus componentes
 		modelo=new TablaModeloCliente();
 		tablaClientes=new JTable();
+		tablaClientes.setBackground(PanelPadre.color1);
 		tablaClientes.setModel(modelo);
 		//TablaRenderizadorProveedor renderizador = new TablaRenderizadorProveedor();
 		//tablaClientes.setDefaultRenderer(String.class, renderizador);
@@ -127,6 +130,7 @@ public class ViewListaClientes extends JDialog {
 		
 		JScrollPane scrollPane = new JScrollPane(tablaClientes);
 		scrollPane.setBounds(36, 97, 742, 136);
+		scrollPane.setBackground(PanelPadre.color1);
 		
 		//configuracion de los paneles
 		panelSuperior.add(panelAccion);
