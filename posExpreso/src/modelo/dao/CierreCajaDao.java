@@ -40,7 +40,7 @@ public class CierreCajaDao {
 					+ "isv15,"
 					+ "isv18)"
 					+ " VALUES (now(),?,?,?,?,?,?,?,?,?)";
-		 if(unCierre!=null&&unCierre.getNoFacturaFinal()!=0){
+			 if(unCierre!=null&&unCierre.getNoFacturaFinal()!=0){
 				 try {
 						con = Conexion.getPoolConexion().getConnection();
 						registrarCierre=
@@ -93,7 +93,7 @@ public class CierreCajaDao {
 		 }else{
 			 resultado=false;
 		 }
-		 
+		
 		return resultado;
 	}
 	

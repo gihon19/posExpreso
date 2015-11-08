@@ -14,6 +14,7 @@ import java.awt.event.WindowListener;
 
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import modelo.Articulo;
 import modelo.dao.ArticuloDao;
 import modelo.dao.PrecioArticuloDao;
+import modelo.AbstractJasperReports;
 import modelo.Cliente;
 import modelo.CodBarra;
 import modelo.Conexion;
@@ -148,7 +150,21 @@ public class CtlArticulo extends MouseAdapter implements ActionListener,KeyListe
 			this.view.setVisible(false);
 			
 			break;
+			
+		case "IMPRIMIR":
+			try {
+				AbstractJasperReports.createReportCodBarra(conexion.getPoolConexion().getConnection(), myArticulo.getId());
+				AbstractJasperReports.ImprimirCodigo();
+				//AbstractJasperReports.showViewer(view);
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
 		}
+		
+		
 		
 	}
 	

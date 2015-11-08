@@ -50,14 +50,14 @@ public class ViewCambioPago extends JDialog {
 	public ViewCambioPago(Window v) {
 		
 		super(v,"Forma de pago",Dialog.ModalityType.DOCUMENT_MODAL);
-		setUndecorated(true);
+		//setUndecorated(true);
 		Font myFont=new Font("OCR A Extended", Font.PLAIN, 45);
 		 grupoOpciones = new ButtonGroup(); // crea ButtonGroup//para el grupo de la forma de pago
 		 //Color color1 =Color.decode("#0009999");
 		 Color color1 =Color.decode("#d4f4ff");
 		 this.getContentPane().setBackground(color1);
-		this.setSize(588, 300);
-		this.setPreferredSize(new Dimension(588, 300));
+		this.setSize(588, 325);
+		this.setPreferredSize(new Dimension(588, 325));
 		this.setResizable(false);
 		//setUndecorated(true);
 		getContentPane().setLayout(null);
@@ -146,7 +146,7 @@ public class ViewCambioPago extends JDialog {
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(60, 179, 113));
-		panel_2.setBounds(0, 0, 219, 300);
+		panel_2.setBounds(0, 0, 219, 296);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		

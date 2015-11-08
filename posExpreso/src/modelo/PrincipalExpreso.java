@@ -24,6 +24,20 @@ public class PrincipalExpreso {
 		
 		Conexion conexion= new Conexion();
 		
+		AbstractJasperReports.loadFileReport();
+		
+		
+		try {
+			AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, 1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
+		
+		
+		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -34,22 +48,13 @@ public class PrincipalExpreso {
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
-												
-		
-		AbstractJasperReports.loadFileReport();
-		try {
-			AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, 1);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		}
-		
 		ViewLogin viewLogin =new ViewLogin(); 
 		CtlLogin ctlLogin=new CtlLogin(viewLogin,conexion);
 		
 		boolean login=ctlLogin.login();
 		
+		/*JDialog.setDefaultLookAndFeelDecorated(true);
+		JFrame.setDefaultLookAndFeelDecorated(true);*/
 		if(login){
 			
 			if(conexion.getUsuarioLogin().getTipoPermiso()==1){

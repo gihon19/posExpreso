@@ -16,9 +16,11 @@ import modelo.AbstractJasperReports;
 import modelo.dao.CodBarraDao;
 import modelo.Conexion;
 import modelo.Factura;
+import modelo.dao.DetalleFacturaDao;
 import modelo.dao.FacturaDao;
 import modelo.dao.UsuarioDao;
 import view.ViewCrearArticulo;
+import view.ViewFacturaDevolucion;
 import view.ViewFacturar;
 import view.ViewFacturas;
 
@@ -29,19 +31,26 @@ public class CtlFacturas implements ActionListener, MouseListener, ChangeListene
 	private Conexion conexion=null;
 	private Factura myFactura;
 	private UsuarioDao myUsuarioDao=null;
+	private DetalleFacturaDao detallesDao=null;
 	
 	
 	//fila selecciona enla lista
 	private int filaPulsada;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public CtlFacturas(ViewFacturas v,Conexion conn) {
 		view =v;
 		view.conectarControlador(this);
 		conexion=conn;
 		myFacturaDao=new FacturaDao(conexion);
-		cargarTabla(myFacturaDao.todasfacturas());
+		cargarTabla(myFacturaDao.todasfacturas(view.getModelo().getLimiteInferior(),view.getModelo().getLimiteSuperior()));
+		
+		view.getTxtPagina().setText(""+view.getModelo().getNoPagina());
 		myFactura=new Factura();
 		myUsuarioDao=new UsuarioDao(conexion);
+		detallesDao=new DetalleFacturaDao(conexion);
 		view.setVisible(true);
 	}
 	
@@ -72,6 +81,7 @@ public class CtlFacturas implements ActionListener, MouseListener, ChangeListene
             
             this.view.getBtnEliminar().setEnabled(true);
             this.view.getBtnImprimir().setEnabled(true);
+            view.getBtnAgregar().setEnabled(true);
             this.myFactura=this.view.getModelo().getFactura(filaPulsada);
             //se consigue el proveedore de la fila seleccionada
             //myArticulo=this.view.getModelo().getArticulo(filaPulsada);
@@ -203,7 +213,9 @@ public class CtlFacturas implements ActionListener, MouseListener, ChangeListene
 			
 			//si la busqueda son tadas
 			if(this.view.getRdbtnTodos().isSelected()){  
-				cargarTabla(myFacturaDao.todasfacturas());
+				cargarTabla(myFacturaDao.todasfacturas(view.getModelo().getLimiteInferior(),view.getModelo().getLimiteSuperior()));
+				
+				view.getTxtPagina().setText(""+view.getModelo().getNoPagina());
 				this.view.getTxtBuscar1().setText("");
 				}
 			break;
@@ -240,6 +252,18 @@ public class CtlFacturas implements ActionListener, MouseListener, ChangeListene
 				this.view.getBtnEliminar().setEnabled(false);
 			}
 			break;
+		case "INSERTAR":
+			if(this.filaPulsada>0){
+				myFactura.setDetalles(detallesDao.getDetallesFactura(myFactura.getIdFactura()));
+				ViewFacturaDevolucion viewDevolucion=new ViewFacturaDevolucion(view);
+				CtlDevoluciones ctlDevolucion=new CtlDevoluciones(viewDevolucion,conexion);
+				ctlDevolucion.actualizarFactura(myFactura);
+				viewDevolucion.dispose();
+				viewDevolucion=null;
+				ctlDevolucion=null;
+			}
+			
+			break;
 			
 		case "IMPRIMIR":
 			try {
@@ -255,7 +279,21 @@ public class CtlFacturas implements ActionListener, MouseListener, ChangeListene
 				ee.printStackTrace();
 			}
 			break;
+			
+		case "NEXT":
+			view.getModelo().netPag();
+			cargarTabla(myFacturaDao.todasfacturas(view.getModelo().getLimiteInferior(),view.getModelo().getLimiteSuperior()));
+			
+			view.getTxtPagina().setText(""+view.getModelo().getNoPagina());
+			break;
+		case "LAST":
+			view.getModelo().lastPag();
+			cargarTabla(myFacturaDao.todasfacturas(view.getModelo().getLimiteInferior(),view.getModelo().getLimiteSuperior()));
+			
+			view.getTxtPagina().setText(""+view.getModelo().getNoPagina());
+			break;
 		}
+		
 
 	}
 

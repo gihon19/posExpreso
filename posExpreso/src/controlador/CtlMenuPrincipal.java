@@ -120,7 +120,7 @@ public class CtlMenuPrincipal implements ActionListener {
 				ctlFacturas=null;*/
 			
 				ViewFacturar vistaFacturar=new ViewFacturar(this.view);
-				vistaFacturar.pack();
+				//vistaFacturar.pack();
 				CtlFacturar ctlFacturar=new CtlFacturar(vistaFacturar,conexion );
 				vistaFacturar.setVisible(true);
 				
@@ -185,6 +185,7 @@ public class CtlMenuPrincipal implements ActionListener {
 				viewProgramarPrecio=null;
 				ctlProgramarPrecio=null;
 				break;
+				
 			case "R_DEI":
 				ViewFiltroReportDei viewFiltroDei=new ViewFiltroReportDei(view);
 				CtlFiltroRepDei ctlFiltroDei=new CtlFiltroRepDei(viewFiltroDei,conexion);

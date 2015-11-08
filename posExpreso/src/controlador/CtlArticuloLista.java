@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 import modelo.Articulo;
 import modelo.dao.ArticuloDao;
 import modelo.dao.CodBarraDao;
+import modelo.AbstractJasperReports;
 import modelo.Conexion;
 import modelo.Marca;
 import modelo.Proveedor;
@@ -35,7 +37,7 @@ public class CtlArticuloLista implements ActionListener,MouseListener, WindowLis
 	private ArticuloDao myArticuloDao;
 	
 	//fila selecciona enla lista
-	private int filaPulsada;
+	private int filaPulsada=-1;
 	
 	//pool de conexion
 	private Conexion conexion=null;
@@ -121,21 +123,45 @@ public class CtlArticuloLista implements ActionListener,MouseListener, WindowLis
 			
 			break;
 		case "ELIMINAR":
-			//JOptionPane.showMessageDialog(view, myArticulo);
-			int resul=JOptionPane.showConfirmDialog(view, "Desea eleminar el articulo \""+myArticulo.getArticulo()+"\"?");
-			//JOptionPane.showMessageDialog(view, c);
-			if(resul==0){
-				//se elemina el articulo de la BD y se procesa el resultado
-				boolean resulEliminar=myArticuloDao.eliminarArticulo(myArticulo.getId());
-				if(resulEliminar){
-					this.view.getModelo().eliminarArticulos(filaPulsada);
-					this.view.getModelo().fireTableDataChanged();
-					this.view.getBtnEliminar().setEnabled(false);
-					JOptionPane.showMessageDialog(view, "Se elimino el articulo");
+			if(this.filaPulsada>=0){
+				int resul=JOptionPane.showConfirmDialog(view, "Desea eleminar el articulo \""+myArticulo.getArticulo()+"\"?");
+				//JOptionPane.showMessageDialog(view, c);
+				if(resul==0){
+					//se elemina el articulo de la BD y se procesa el resultado
+					boolean resulEliminar=myArticuloDao.eliminarArticulo(myArticulo.getId());
+					if(resulEliminar){
+						this.view.getModelo().eliminarArticulos(filaPulsada);
+						this.view.getModelo().fireTableDataChanged();
+						this.view.getBtnEliminar().setEnabled(false);
+						JOptionPane.showMessageDialog(view, "Se elimino el articulo");
+						
+					}
 					
 				}
-				
+			}else{
+				JOptionPane.showMessageDialog(view, "Selecione un articulo!!!", "Informacion", JOptionPane.NO_OPTION);
 			}
+			break;
+		case "BARCODE":
+			if(this.filaPulsada>=0){
+				try {
+					AbstractJasperReports.createReportCodBarra(conexion.getPoolConexion().getConnection(), myArticulo.getId());
+					//AbstractJasperReports.ImprimirCodigo();
+					AbstractJasperReports.showViewer(view);
+					//AbstractJasperReports.showViewer(view);
+					//this.view.getBtnBarCode().setEnabled(false);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else{
+				JOptionPane.showMessageDialog(view, "Selecione un articulo!!!", "Informacion", JOptionPane.NO_OPTION);
+			}
+			break;
+		case "KARDEX":
+			JOptionPane.showMessageDialog(view, "Mostrara el kardex", "Informacion", JOptionPane.NO_OPTION);
 			break;
 			
 				
@@ -194,13 +220,14 @@ public class CtlArticuloLista implements ActionListener,MouseListener, WindowLis
 				
 				
 	        }//fin del if del doble click
-        	else{//si solo seleccion la fila se guarda el id de proveedor para accion de eliminar
+        	
+        	/*else{//si solo seleccion la fila se guarda el id de proveedor para accion de eliminar
         		
         		this.view.getBtnEliminar().setEnabled(true);
-        		/*idProveedor=identificador;
-        		filaTabla=filaPulsada;*/
+        		this.view.getBtnBarCode().setEnabled(true);
         		
-        	}
+        		
+        	}*/
 		}
 		
 	}
