@@ -40,7 +40,7 @@ public class Conexion {
 	   private DataSource dataSource;
 	   static String bd = "admin_tools_exp";
 	   static String login = "root";
-	   static String password = "jdmm123";
+	   static String password = "jdmm123.";
 	   static String url = "jdbc:mysql://localhost:3306/"+bd;
 	   static String driver="com.mysql.jdbc.Driver";
    private Usuario usuarioLogin=null;
@@ -76,7 +76,7 @@ public class Conexion {
            if(conn!=null){
 
                //JOptionPane.showMessageDialog(null, "Conectado");
-               System.out.println("Conección a base de datos "+bd+" OK");
+               System.out.println("Conecciï¿½n a base de datos "+bd+" OK");
 
            }
 
@@ -106,11 +106,11 @@ public class Conexion {
      /* try{
          //obtenemos el driver de para mysql
          Class.forName(driver);
-         //obtenemos la conexión
+         //obtenemos la conexiï¿½n
          conn = DriverManager.getConnection(url,login,password);
 
          if (conn!=null){
-            System.out.println("Conección a base de datos "+bd+" OK");
+            System.out.println("Conecciï¿½n a base de datos "+bd+" OK");
          }
       }
       catch(SQLException e){
@@ -130,7 +130,7 @@ public class Conexion {
 	   
    }
   
-   /**Permite retornar la conexión*/
+   /**Permite retornar la conexiï¿½n*/
    public Connection getConnection(){
 	  
       return conn;

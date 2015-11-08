@@ -608,7 +608,7 @@ public void calcularTotal(DetalleFactura detalle){
 			}
 		}*/
 		
-		//Recoger qué fila se ha pulsadao en la tabla
+		//Recoger quï¿½ fila se ha pulsadao en la tabla
 		filaPulsada = this.view.getTableDetalle().getSelectedRow();
 		
 		if(e.getKeyCode()==KeyEvent.VK_F1){
@@ -717,7 +717,7 @@ public void calcularTotal(DetalleFactura detalle){
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
-		//Recoger qué fila se ha pulsadao en la tabla
+		//Recoger quï¿½ fila se ha pulsadao en la tabla
 		filaPulsada = this.view.getTableDetalle().getSelectedRow();
 		char caracter = e.getKeyChar();
 		
@@ -891,10 +891,9 @@ public void calcularTotal(DetalleFactura detalle){
 									this.view.dispose();*/
 									//AbstractJasperReports.createReportFactura( conexion.getPoolConexion().getConnection(), "Factura_Saint_Paul.jasper",myFactura.getIdFactura() );
 									AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, myFactura.getIdFactura());
-									//AbstractJasperReports.showViewer(view);
-									AbstractJasperReports.imprimierFactura();
+									AbstractJasperReports.showViewer(view);
 									//AbstractJasperReports.imprimierFactura();
-									//myFactura=null;
+									
 									setEmptyView();
 									
 									//si la view es de actualizacion al cobrar se cierra la view

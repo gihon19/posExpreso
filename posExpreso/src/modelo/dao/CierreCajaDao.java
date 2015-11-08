@@ -375,6 +375,8 @@ public CierreCaja getCierreUltimoUser(){
 		
 		ResultSet res=null;
 		
+		
+		
 		boolean existe=false;
 		try {
 			con = Conexion.getPoolConexion().getConnection();
