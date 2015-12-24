@@ -219,7 +219,7 @@ public class CtlFacturar  implements ActionListener, MouseListener, TableModelLi
 			myCliente=new Cliente();
 			myCliente.setId(Integer.parseInt(this.view.getTxtIdcliente().getText()));
 			myCliente.setNombre(this.view.getTxtNombrecliente().getText());
-			//myCliente.setRtn(view.getTxtRtn().getText());
+			myCliente.setRtn(view.getTxtRtn().getText());
 			
 		}
 		
@@ -657,14 +657,24 @@ public void calcularTotal(DetalleFactura detalle){
 											}else
 												if(e.getKeyCode()==KeyEvent.VK_LEFT){
 													if(filaPulsada>=0){
-														 this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().netPrecio();
-														 this.calcularTotales();
+														int resul=JOptionPane.showConfirmDialog(null, "Realmente desea agregar descuento de la tercera edad?", "Confirmar descuento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+														if(resul==0){
+															this.view.getModeloTabla().getDetalle(filaPulsada).setDescuento(5);
+															this.calcularTotales();
+														}
+														//JOptionPane.showMessageDialog(view, "Precio de tercera edad "+resul);
+														 //this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().netPrecio();
+														//this.calcularTotales();
 													 }
 												}else
 													if(e.getKeyCode()==KeyEvent.VK_RIGHT){
 														if(filaPulsada>=0){
-															 this.view.getModeloTabla().getDetalle(filaPulsada).getArticulo().lastPrecio();
-															 this.calcularTotales();
+															int resul=JOptionPane.showConfirmDialog(null, "Realmente desea quitar descuento de la tercera edad?", "Confirmar descuento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+															if(resul==0){
+																this.view.getModeloTabla().getDetalle(filaPulsada).setDescuento(0);
+																this.view.getModeloTabla().getDetalle(filaPulsada).setDescuentoItem(new BigDecimal(0));
+																this.calcularTotales();
+															}
 														 }
 													}
 								 
@@ -891,8 +901,8 @@ public void calcularTotal(DetalleFactura detalle){
 									this.view.dispose();*/
 									//AbstractJasperReports.createReportFactura( conexion.getPoolConexion().getConnection(), "Factura_Saint_Paul.jasper",myFactura.getIdFactura() );
 									AbstractJasperReports.createReport(conexion.getPoolConexion().getConnection(), 1, myFactura.getIdFactura());
-									AbstractJasperReports.showViewer(view);
-									//AbstractJasperReports.imprimierFactura();
+									//AbstractJasperReports.showViewer(view);
+									AbstractJasperReports.imprimierFactura();
 									
 									setEmptyView();
 									

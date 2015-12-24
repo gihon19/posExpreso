@@ -175,7 +175,7 @@ public class ViewFacturar extends JDialog {
 		tableDetalle.setDefaultRenderer(String.class, renderizador);
 		//tableDetalle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		tableDetalle.getColumnModel().getColumn(0).setPreferredWidth(50);     //Tamaño de las columnas de las tablas
+		tableDetalle.getColumnModel().getColumn(0).setPreferredWidth(50);     //Tamaï¿½o de las columnas de las tablas
 		tableDetalle.getColumnModel().getColumn(1).setPreferredWidth(200);	//
 		tableDetalle.getColumnModel().getColumn(2).setPreferredWidth(80);	//
 		tableDetalle.getColumnModel().getColumn(3).setPreferredWidth(80);	//
@@ -271,6 +271,7 @@ public class ViewFacturar extends JDialog {
 		grupoOpciones.add(rdbtnContado);
 		panelDatosFactura.add(rdbtnContado);
 		rdbtnCredito = new JRadioButton("");
+		rdbtnCredito.setEnabled(false);
 		rdbtnCredito.setHorizontalAlignment(SwingConstants.CENTER);
 		grupoOpciones.add(rdbtnCredito);
 		panelDatosFactura.add(rdbtnCredito);

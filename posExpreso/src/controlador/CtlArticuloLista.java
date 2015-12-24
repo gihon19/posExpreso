@@ -161,7 +161,22 @@ public class CtlArticuloLista implements ActionListener,MouseListener, WindowLis
 			}
 			break;
 		case "KARDEX":
-			JOptionPane.showMessageDialog(view, "Mostrara el kardex", "Informacion", JOptionPane.NO_OPTION);
+			if(this.filaPulsada>=0){
+				try {
+					AbstractJasperReports.createReportKardex(conexion.getPoolConexion().getConnection(), myArticulo.getId(), 1, conexion.getUsuarioLogin().getUser());
+					//AbstractJasperReports.ImprimirCodigo();
+					AbstractJasperReports.showViewer(view);
+					//AbstractJasperReports.showViewer(view);
+					//this.view.getBtnBarCode().setEnabled(false);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else{
+				JOptionPane.showMessageDialog(view, "Selecione un articulo!!!", "Informacion", JOptionPane.NO_OPTION);
+			}
 			break;
 			
 				
@@ -173,7 +188,7 @@ public class CtlArticuloLista implements ActionListener,MouseListener, WindowLis
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-		//Recoger qué fila se ha pulsadao en la tabla
+		//Recoger quï¿½ fila se ha pulsadao en la tabla
         filaPulsada = this.view.getTablaArticulos().getSelectedRow();
         
         //si seleccion una fila

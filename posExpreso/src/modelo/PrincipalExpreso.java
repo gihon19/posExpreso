@@ -23,7 +23,7 @@ public class PrincipalExpreso {
 		// TODO Auto-generated method stub
 		
 		Conexion conexion= new Conexion();
-		
+					
 		AbstractJasperReports.loadFileReport();
 		
 		

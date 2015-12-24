@@ -124,6 +124,8 @@ public class CtlAgregarCompras implements ActionListener,MouseListener,TableMode
 				if(result){
 					JOptionPane.showMessageDialog(view,"Se guarda la factura");
 					this.view.setVisible(false);
+					
+					
 				}else{
 					JOptionPane.showMessageDialog(view,"No se guarda la factura");
 					this.view.setVisible(false);

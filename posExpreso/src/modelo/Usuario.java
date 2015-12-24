@@ -6,6 +6,7 @@ public class Usuario extends Persona {
 	private String permiso="";
 	private String pwd="";
 	private int tipo_permiso;
+	private String userOld;
 	
 	public void setCodigo(int c){
 		codigo=c;
@@ -19,7 +20,12 @@ public class Usuario extends Persona {
 	public int getTipoPermiso(){
 		return tipo_permiso;
 	}
-	
+	public void setUserOld(String u){
+		userOld=u;
+	}
+	public String getUserOld(){
+		return userOld;
+	}
 	public void setUser(String u){
 		user=u;
 	}

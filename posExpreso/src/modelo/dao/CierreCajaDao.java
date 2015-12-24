@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import modelo.CierreCaja;
 import modelo.Conexion;
@@ -429,6 +433,130 @@ public CierreCaja getCierreUltimoUser(){
 			}
 			else return null;*/
 		
+	}
+	
+	public List<CierreCaja> todos() {
+		List<CierreCaja> cierres =new ArrayList<CierreCaja>();
+		
+		ResultSet res=null;
+		
+		Connection conn=null;
+		
+		boolean existe=false;
+		
+		try{
+			conn=conexion.getPoolConexion().getConnection();
+			seleccionarCierre=conn.prepareStatement("SELECT * FROM v_cierre_caja ORDER BY idCierre Desc");
+			res = seleccionarCierre.executeQuery();
+			while(res.next()){
+				existe=true;
+				CierreCaja unaCierre=new CierreCaja();
+				unaCierre.setFecha(res.getString("fecha"));
+				unaCierre.setId(res.getInt("idCierre"));
+				unaCierre.setNoFacturaInicio(res.getInt("factura_inicial"));
+				unaCierre.setNoFacturaFinal(res.getInt("factura_final"));
+				unaCierre.setEfectivo(res.getBigDecimal("efectivo"));
+				unaCierre.setCredito(res.getBigDecimal("creditos"));
+				unaCierre.setTarjeta(res.getBigDecimal("tarjeta"));
+				
+				unaCierre.setIsv15(res.getBigDecimal("isv15"));
+				unaCierre.setIsv18(res.getBigDecimal("isv18"));
+				
+				unaCierre.setTotal(res.getBigDecimal("totalventa"));
+				unaCierre.setUsuario(res.getString("usuario"));
+				
+				
+				cierres.add(unaCierre);
+				
+				
+			}
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error, no se conecto");
+			System.out.println(e);
+	}
+	finally
+	{
+		try{
+			if(res != null) res.close();
+	        if(seleccionarCierre != null)seleccionarCierre.close();
+	        if(conn != null) conn.close();
+			
+			} // fin de try
+			catch ( SQLException excepcionSql )
+			{
+				excepcionSql.printStackTrace();
+				//conexion.desconectar();
+			} // fin de catch
+	} // fin de finally
+		
+		
+		if (existe) {
+			return cierres;
+		}
+		else return null;
+	}
+
+	public List<CierreCaja> porFecha(String date, String date2) {
+		List<CierreCaja> cierres =new ArrayList<CierreCaja>();
+		
+		ResultSet res=null;
+		
+		Connection conn=null;
+		
+		boolean existe=false;
+		
+		try{
+			conn=conexion.getPoolConexion().getConnection();
+			seleccionarCierre=conn.prepareStatement("SELECT * FROM v_cierre_caja where fecha2 BETWEEN ? and ?");
+			seleccionarCierre.setString(1, date);
+			seleccionarCierre.setString(2, date2);
+			res = seleccionarCierre.executeQuery();
+			while(res.next()){
+				existe=true;
+				CierreCaja unaCierre=new CierreCaja();
+				unaCierre.setFecha(res.getString("fecha"));
+				unaCierre.setId(res.getInt("idCierre"));
+				unaCierre.setNoFacturaInicio(res.getInt("factura_inicial"));
+				unaCierre.setNoFacturaFinal(res.getInt("factura_final"));
+				unaCierre.setEfectivo(res.getBigDecimal("efectivo"));
+				unaCierre.setCredito(res.getBigDecimal("creditos"));
+				unaCierre.setTarjeta(res.getBigDecimal("tarjeta"));
+				
+				unaCierre.setIsv15(res.getBigDecimal("isv15"));
+				unaCierre.setIsv18(res.getBigDecimal("isv18"));
+				
+				unaCierre.setTotal(res.getBigDecimal("totalventa"));
+				unaCierre.setUsuario(res.getString("usuario"));
+				
+				
+				cierres.add(unaCierre);
+				
+				
+			}
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error, no se conecto");
+			System.out.println(e);
+	}
+	finally
+	{
+		try{
+			if(res != null) res.close();
+	        if(seleccionarCierre != null)seleccionarCierre.close();
+	        if(conn != null) conn.close();
+			
+			} // fin de try
+			catch ( SQLException excepcionSql )
+			{
+				excepcionSql.printStackTrace();
+				//conexion.desconectar();
+			} // fin de catch
+	} // fin de finally
+		
+		
+		if (existe) {
+			return cierres;
+		}
+		else return null;
 	}
 
 }

@@ -53,7 +53,7 @@ public class DetalleFacturaProveedorDao {
 			agregarDetalle.executeUpdate();
 			
 			
-			
+			/*
 			Inventario inventario=new Inventario();
 			//se consigue el inventario del articulo
 			inventario=inventarioDao.buscarArticulo(detalle.getArticulo().getId());
@@ -85,7 +85,7 @@ public class DetalleFacturaProveedorDao {
 			myKardex.getBodega().setId(1);
 			myKardex.setNoDocumento(""+noCompra);
 			
-			kardexDao.agregarEntrada(myKardex);
+			kardexDao.agregarEntrada(myKardex);*/
 			
 			
 			resultado=true;
